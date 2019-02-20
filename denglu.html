@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>凡客VANCL-登录</title>
+	<link rel="stylesheet" type="text/css" href="css/gongyong.css">
+	<link rel="stylesheet" type="text/css" href="css/denglu.css">
+	<link rel="stylesheet" type="text/css" href="css/d_zgongyong.css">
+</head>
+<body>
+	<!-- nav -->
+	<div class="nav">
+		<a href=""><img src="img/logo2.jpg"/></a>
+		<a href=""><span>帮助</span></a>
+		<hr/>
+	</div>
+	<!-- content -->
+	<div class="content">
+		<h1>凡客VANCl登录<span>没有账户免费<a href="zhuce.html" target="_blank">注册</a></span></h1>
+		<p></p>
+		<div class="contentCenter">
+			<div class="centerLeft">
+				<a href=""><img src="img/newlogo.jpg"/></a>
+			</div>
+			<div class="centerRight">
+				<input id="txtUsername" type="text" placeholder="请输入用户名"/>
+				<input id="userpass" type="password" placeholder="请输入密码"/>
+				<a id="btnLogin" href="">登录</a>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<div class="footerTop">
+			<p>Copyright 2007 - 2018 vancl.com All Rights Reserved 京ICP证100557号 京公网安备11011502002400号 出版物经营许可证新出发京批字第直110138号</p>
+			<p>凡客诚品（北京）科技有限公司</p>
+		</div>
+		<div class="footerBottom">
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""><img src="img/cctv.jpg"/></a>
+		</div>
+	</div>
+</body>
+</html>
+<!-- <script type="text/javascript" src="js/ajaxTools.js"></script> -->
+<script type="text/javascript" src="js/cookieTools.js"></script>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	$("#btnLogin").onclick = function(){
+		//1、创建对象
+		let xhr =new XMLHttpRequest();
+
+		//2、设置请求参数
+		xhr.open("post","lianjie.php",true);
+
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				if(xhr.responseText=="1"){
+					//保存cookie
+					alert("登录成功")
+					addCookie("username",$("#txtUsername").value,7);
+					location.href="http://127.0.0.1/VANCL/index.html";
+				}else{
+					alert("登录失败！");
+				}
+			}
+		}
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		
+		let str = `username=${$("#txtUsername").value}&userpass=${$("#userpass").value}`;
+		xhr.send(str);
+	}
+}
+</script>

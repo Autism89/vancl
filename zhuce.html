@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>凡客VANCL-注册</title>
+	<link rel="stylesheet" type="text/css" href="css/zhuce.css">
+	<link rel="stylesheet" type="text/css" href="css/gongyong.css">
+	<link rel="stylesheet" type="text/css" href="css/d_zgongyong.css">
+</head>
+<body>
+	<!-- nav -->
+	<div class="nav">
+		<a href=""><img src="img/logo2.jpg"/></a>
+		<hr/>
+	</div>
+	<!-- content -->
+	<div class="content">
+		<h1>注册新用户<span>我已经注册，现在就<a href="denglu.html" target="_blank">登录</a></span></h1>
+		<p></p>
+		<div class="contentCenter">
+			<div class="centerLeft">
+				<a href=""><img src="img/newlogo.jpg"/></a>
+			</div>
+			<form  class="centerRight">
+				<!-- <div class="picYzm">
+					<input type="text" placeholder="验证码"/>
+					<a href=""><img src="img/yzm.jpg"/></a>
+					<span>请输入图片验证码</span>
+				</div> -->
+				<div class="phoneYzm">
+					<input id="userphone" type="text" placeholder="请输入手机号"/>
+					<!-- <a href="">获取短信验证码</a> -->
+				</div>
+				<div class="writeYzm">
+					<input id="username" type="text" placeholder="填写用户名"/><!-- <span id="userSpan"></span> -->
+				</div>
+				<div class="mm">
+					<input type="password" placeholder="设定登录密码"/>
+				</div>
+				<div class="mm2">
+					<input id="userpass" type="password" placeholder="再次输入密码"/>
+				</div>
+				<div class="read">
+					<div class="xzBtn">
+						<input type="checkbox"/>
+					</div>
+					<p>请阅读<a href=""><span>《VNCAL凡客诚品服务条款》</span></a></p>
+				</div>
+				<div  id="btnReg" class="ljzc">
+					立即注册
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<div class="footerTop">
+			<p>Copyright 2007 - 2018 vancl.com All Rights Reserved 京ICP证100557号 京公网安备11011502002400号 出版物经营许可证新出发京批字第直110138号</p>
+			<p>凡客诚品（北京）科技有限公司</p>
+		</div>
+		<div class="footerBottom">
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""></a>
+			<a href=""><img src="img/cctv.jpg"/></a>
+		</div>
+	</div>
+</body>
+</html>
+<!-- <script type="text/javascript" src="js/ajaxTools.js"></script> -->
+<script type="text/javascript" src="js/cookieTools.js"></script>
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	$("#username").onblur = function(){
+		//1、创建对象
+		let xhr =new XMLHttpRequest();
+
+		//2、设置请求参数
+		xhr.open("post","denglu.php?username="+this.value,true);
+
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+                $("#userSpan").innerHTML = xhr.responseText;
+			}
+		}
+		xhr.send();
+	}
+
+	$("#btnReg").onclick = function(){
+		//1、创建对象
+		let xhr = new XMLHttpRequest();
+
+		//2、设置请求参数
+		xhr.open("post","regSave.php",true);
+
+		xhr.onreadystatechange = function(){
+
+			if(xhr.readyState==4 && xhr.status==200){
+
+				if(xhr.responseText=="1"){
+					alert("注册成功！")
+					location.href="denglu.html";
+				}else{
+					alert("注册失败")
+				}
+			}
+		}
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+		
+		let str = `username=${$("#username").value}&userpass=${$("#userpass").value}&userphone=${$("#userphone").value}`;
+		xhr.send(str);
+	}
+}
+</script>

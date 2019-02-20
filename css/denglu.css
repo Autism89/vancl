@@ -1,0 +1,46 @@
+/*nav*/
+.nav{
+	position: relative;
+}
+.nav span{
+	float: right;
+	position: absolute;
+	right: 0;
+	top: 25px;
+	font-size: 10px;
+	color: black;
+}
+/*.content*/
+.centerRight{
+	width: 514px;
+	height: 410px;
+	float: right;
+}
+.centerRight input{
+	width: 360px;
+	height: 45px;
+	margin-left: 25px;
+	/*color: #acacac;*/
+	text-indent: 10px;
+}
+.centerRight input:nth-child(1){
+	margin-top: 80px;
+}
+.centerRight input:nth-child(2){
+	margin-top: 30px;
+}
+.centerRight a{
+	display: block;
+	width: 364px;
+	height: 49px;
+    line-height: 49px;
+	margin-left: 25px;
+	margin-top: 30px;
+    background: #b42025;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+}
+.centerRight a:hover{
+	font-weight: bold;
+}
